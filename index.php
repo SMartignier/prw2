@@ -3,21 +3,9 @@ session_start();
 
 $configs = include("src/config/config.php");
 
-/*try{
-	$strConnection = 'mysql:host='.$configs["db"]["host"].';dbname='.$configs["db"]["dbname"];
-	$arrExtraParam= array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
-	$pdo = new PDO($strConnection, $configs["db"]["user"], $configs["db"]["password"], $arrExtraParam);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch(PDOException $e){
-	die('Error: '.$e->getMessage());
-}*/
-//ligne de commentaire
-
 require_once("src/classes/Autoloader.php");
 Autoloader::register();
-
-$connect = new \Core\Db\ConnectPDO($configs["db"]);
+App::init($configs["db"]);
 
 $pages = include("src/config/pages.php");
 $page = 'home';
